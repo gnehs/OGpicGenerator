@@ -1,0 +1,24 @@
+{
+    "name": "ogpicgenerator",
+    "version": "1.0.0",
+    "description": "從 TLHCrawler 分離出來的可愛小程式",
+    "main": "index.js",
+    "scripts": {
+        "test": "node index.js 5",
+        "start": "node index.js 100"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/gnehs/OGpicGenerator.git"
+    },
+    "author": "gnehs",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/gnehs/OGpicGenerator/issues"
+    },
+    "homepage": "https://github.com/gnehs/OGpicGenerator#readme",
+    "dependencies": {
+        "images": "^3.0.1",
+        "trianglify": "^1.2.0"
+    }
+}
