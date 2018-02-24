@@ -19,7 +19,7 @@ function generateOGImage() {
                 quality: 100
             });
     } catch (err) {
-
+        generateOGImage() // if err => retry
     }
 }
 
@@ -33,7 +33,6 @@ function getBackground(width = 1400, height = 756) {
     var data = background.substr(background.indexOf('base64') + 7);
     var bg = new Buffer(data, 'base64');
     return bg
-
 }
 
 
@@ -48,3 +47,4 @@ for (var i = 0; i < process.argv[2]; i++) {
     generateOGImage()
     console.log('已產生 %s 張圖片', i + 1)
 }
+console.log('全部圖片產生完畢')
