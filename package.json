@@ -18,7 +18,7 @@
     },
     "homepage": "https://github.com/gnehs/OGpicGenerator#readme",
     "dependencies": {
-        "images": "^3.0.1",
+        "sharp": "^0.20.3",
         "trianglify": "^1.2.0"
     }
 }

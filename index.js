@@ -1,26 +1,22 @@
 const fs = require('fs');
 const Trianglify = require('trianglify'); // trianglify
-const images = require("images"); // Node.js轻量级跨平台图像编解码库
+const sharp = require('sharp'); // https://github.com/lovell/sharp
 
 if (process.argv.length < 3) {
-    console.log('請輸入一個數字');
+    console.log('🔢 請輸入一個數字');
     console.log('範例: node index.js 5');
     return;
 }
 
+
 function generateOGImage() {
     var bg = getBackground()
     var mask = getMask()
-    try {
-        images(1400, 756) //Load image from file
-            .draw(images(bg), 0, 0)
-            .draw(images(mask), 0, 0)
-            .save("./ogimage/" + Math.floor(Math.random() * 999999) + ".png", {
-                quality: 100
-            });
-    } catch (err) {
-        generateOGImage() // if err => retry
-    }
+    sharp(bg)
+        .overlayWith(mask)
+        .png()
+        .toFile('./ogimage/ogimg_' + Math.random().toString(36).substr(2) + '.png')
+        .catch(err => generateOGImage(err))
 }
 
 function getBackground(width = 1400, height = 756) {
@@ -42,9 +38,9 @@ function getMask(ddr = './mask/') {
     var img = ddr + files[imgnum]
     return img
 }
-console.log('正在產生 %s 張圖片', process.argv[2])
+console.log('🍆 正在產生 %s 張圖片', process.argv[2])
 for (var i = 0; i < process.argv[2]; i++) {
     generateOGImage()
-    console.log('已產生 %s 張圖片', i + 1)
+    console.log('✔️ 已產生 %s 張圖片', i + 1)
 }
-console.log('全部圖片產生完畢')
+console.log('😄 全部圖片產生完畢')
