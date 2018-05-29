@@ -12,19 +12,21 @@ if (process.argv.length < 3) {
 function generateOGImage() {
     var bg = getBackground()
     var mask = getMask()
+    var imgfilename = './ogimage/ogimg_' + Math.random().toString(36).substr(2) + '.png'
     sharp(bg)
         .overlayWith(mask)
         .png()
-        .toFile('./ogimage/ogimg_' + Math.random().toString(36).substr(2) + '.png')
+        .toFile(imgfilename)
         .catch(err => generateOGImage(err))
+
 }
 
 function getBackground(width = 1400, height = 756) {
     var background = Trianglify({
         width: width,
         height: height,
-        stroke_width: Math.floor(Math.random() * 60) + 40,
-        cell_size: Math.floor(Math.random() * 40) + 30,
+        stroke_width: Math.floor(Math.random() * 30) + 30,
+        cell_size: Math.floor(Math.random() * 10) + 45,
     }).png();
     var data = background.substr(background.indexOf('base64') + 7);
     var bg = new Buffer(data, 'base64');
@@ -38,6 +40,7 @@ function getMask(ddr = './mask/') {
     var img = ddr + files[imgnum]
     return img
 }
+
 console.log('🍆 正在產生 %s 張圖片', process.argv[2])
 for (var i = 0; i < process.argv[2]; i++) {
     generateOGImage()
