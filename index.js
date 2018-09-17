@@ -12,7 +12,7 @@ if (process.argv.length < 3) {
 function generateOGImage() {
     var bg = getBackground()
     var mask = getMask()
-    var imgfilename = './ogimage/ogimg_' + Math.random().toString(36).substr(2) + '.png'
+    var imgfilename = __dirname + '/ogimage/ogimg_' + Math.random().toString(36).substr(2) + '.png'
     sharp(bg)
         .overlayWith(mask)
         .png()
@@ -34,7 +34,7 @@ function getBackground(width = 1400, height = 756) {
 }
 
 
-function getMask(ddr = './mask/') {
+function getMask(ddr = __dirname + '/mask/') {
     var files = fs.readdirSync(ddr);
     var imgnum = Math.floor(Math.random() * files.length)
     var img = ddr + files[imgnum]
