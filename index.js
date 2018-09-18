@@ -29,7 +29,7 @@ function getBackground(width = 1400, height = 756) {
         cell_size: Math.floor(Math.random() * 10) + 45,
     }).png();
     var data = background.substr(background.indexOf('base64') + 7);
-    var bg = new Buffer(data, 'base64');
+    var bg = Buffer.from(data, 'base64');
     return bg
 }
 
