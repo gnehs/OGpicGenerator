@@ -4,8 +4,7 @@
     "description": "從 TLHCrawler 分離出來的可愛小程式",
     "main": "index.js",
     "scripts": {
-        "test": "node index.js 5",
-        "start": "node index.js 100"
+        "start": "node index.js"
     },
     "repository": {
         "type": "git",

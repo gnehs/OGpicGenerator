@@ -1,0 +1,15 @@
+[{
+    "name": "隨機顏色青蛙",
+    "input": "./frog/",
+    "output": "./frogOutput/",
+    "bgMethod": "randomcolor",
+    "qty": 10,
+    "filename": "{{mask}}_{{randomstr}}_{{unixtime}}_randomcolor.png"
+}, {
+    "name": "隨機 trianglify 青蛙",
+    "input": "./frog/",
+    "output": "./frogOutput/",
+    "bgMethod": "trianglify",
+    "qty": 10,
+    "filename": "{{mask}}_{{randomstr}}_trianglify.png"
+}]
