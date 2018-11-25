@@ -17,6 +17,7 @@
     },
     "homepage": "https://github.com/gnehs/OGpicGenerator#readme",
     "dependencies": {
+        "cli-progress": "^2.1.0",
         "sharp": "^0.21.0",
         "trianglify": "*"
     }

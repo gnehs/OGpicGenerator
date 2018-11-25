@@ -2,6 +2,7 @@ const fs = require('fs');
 const Trianglify = require('trianglify'); // trianglify
 const sharp = require('sharp'); // https://github.com/lovell/sharp http://sharp.pixelplumbing.com/en/stable/api-input
 const config = require('./config.json')
+const _cliProgress = require('cli-progress');
 // toUnixTime
 Date.prototype.toUnixTime = function () {
     return this.getTime() / 1000 | 0
@@ -67,11 +68,22 @@ function getMask(ddr) {
         filename: files[imgnum]
     }
 }
+async function main() {
+    for (const imgConfig of config) {
+        console.log('🍆 %s', imgConfig.name)
 
-for (const imgConfig of config) {
-    console.log('🍆 正在使用「%s」設定檔產生 %s 張圖片', imgConfig.name, imgConfig.qty)
-    for (var i = 0; i < imgConfig.qty; i++) {
-        generateImage(imgConfig)
+        let bar = new _cliProgress.Bar({
+            format: `{bar} {percentage}% | ETA: {eta}s | {value}/{total}`
+        }, _cliProgress.Presets.shades_classic);
+        bar.start(imgConfig.qty, 0);
+
+        for (var i = 0; i < imgConfig.qty; i++) {
+            await generateImage(imgConfig)
+            bar.update(i + 1);
+        }
+
+        bar.stop();
     }
+    console.log('😄 全部圖片產生完畢')
 }
-console.log('😄 全部圖片產生完畢')
+main()
